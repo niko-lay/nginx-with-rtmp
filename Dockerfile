@@ -11,8 +11,7 @@ RUN apt update \
   	   autoconf \
   	   build-essential \ 
   	   make \
-  	   wget \
-  	   zip
+  	   wget
 
 RUN git clone https://github.com/nginx/nginx
 RUN git clone https://github.com/arut/nginx-rtmp-module
