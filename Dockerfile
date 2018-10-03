@@ -1,4 +1,4 @@
-FROM ubuntu:16.04 as build
+FROM ubuntu:18.04 as build
 
 ARG PRCE_VER="pcre-8.42"
 ARG ZLIB_VER="zlib-1.2.11"
@@ -48,4 +48,18 @@ RUN ./auto/configure \
 		--with-openssl=../${OPENSSL_VER} \
 		--add-module=../nginx-rtmp-module
 
-RUN  make
+RUN  make -j $(getconf _NPROCESSORS_ONLN)
+
+##################################################################################
+
+FROM ubuntu:18.04
+
+#RUN apt update \
+#	&& apt install -y ca-certificates
+
+COPY --from=build /nginx/objs/ .
+
+EXPOSE 1935
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
