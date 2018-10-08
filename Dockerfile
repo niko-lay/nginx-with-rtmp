@@ -46,6 +46,7 @@ RUN ./auto/configure \
 		--with-pcre=../${PRCE_VER} \
 		--with-zlib=../${ZLIB_VER} \
 		--with-openssl=../${OPENSSL_VER} \
+		--with-http_xslt_module=dynamic \
 		--add-module=../nginx-rtmp-module
 
 RUN  make -j $(getconf _NPROCESSORS_ONLN)
