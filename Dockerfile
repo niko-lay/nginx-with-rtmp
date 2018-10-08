@@ -54,8 +54,9 @@ RUN  make -j $(getconf _NPROCESSORS_ONLN)
 
 FROM ubuntu:18.04
 
-#RUN apt update \
-#	&& apt install -y ca-certificates
+RUN apt update \
+	&& apt install -y ca-certificates libxslt1.1
+	
 
 COPY --from=build /nginx/objs/ .
 
