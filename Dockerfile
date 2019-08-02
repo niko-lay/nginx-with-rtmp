@@ -58,11 +58,13 @@ FROM ubuntu:18.04
 
 RUN apt update \
 	&& apt install -y ca-certificates libxslt1.1
-	
+
+WORKDIR /nginx
 
 COPY --from=build /nginx/objs/ .
 
 EXPOSE 1935
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["./nginx", "-g", "daemon off;"]
+
