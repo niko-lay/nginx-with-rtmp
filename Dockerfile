@@ -57,7 +57,8 @@ RUN  make -j $(getconf _NPROCESSORS_ONLN)
 FROM ubuntu:18.04
 
 RUN apt update \
-	&& apt install -y ca-certificates libxslt1.1
+	&& apt install -y ca-certificates libxslt1.1 \
+        && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /nginx
 
